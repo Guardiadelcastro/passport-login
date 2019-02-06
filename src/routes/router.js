@@ -1,5 +1,5 @@
 const express = require('express');
-
+ 
 const router = express.Router();
 
 router.get('/', (req, res, next) => {
@@ -7,11 +7,12 @@ router.get('/', (req, res, next) => {
 });
 
 router.get('/signup', (req, res, next) => {
-  
+  res.render('signup.ejs');
 });
 
 router.post('/signup', (req, res, next) => {
-
+  console.log(req.body);
+  res.send('recieved  ')
 });
 
 router.get('/login', (req, res, next) => {
