@@ -2,9 +2,13 @@ const express = require('express');
 const engine = require('ejs-mate');
 const path = require('path');
 const morgan = require('morgan'); 
+const passport = require('passport');
+const session = require('express-session');
+const flash = require('connect-flash'); 
 
 const app = express();
-require('./database')
+require('./database');
+require('./passport/local-auth');
 //config
 const port = process.env.PORT || 3000;
 
@@ -16,7 +20,20 @@ app.set('port', port);
 // middlewares
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended: false}));
+app.use(session({
+  secret: 'mySecretSession',
+  resave: false,
+  saveUninitialized: false
+}));
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
 
+
+app.use((req, res, next) => {
+  app.locals.signUpMessage = req.flash('signUpMessage');
+  next();
+})
 // routes
 const routes = require('./routes/router');
 app.use('/', routes);
