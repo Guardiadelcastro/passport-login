@@ -8,6 +8,7 @@ I intend to play around with the code and add my spin on things so I will be usi
 | master | The latest version of the code |
 | develop | Current work |
 | tutorial | The code as learned from Fazt's tutorial|
+| bulma | I changed the style of the components with bulma instead of bootstrap |
 
 
 
