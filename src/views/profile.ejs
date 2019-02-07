@@ -1,9 +1,16 @@
 <%- layout('./layouts/main.ejs') %>
-
-<h1>Profile</h1>
-
-<div class="card card-body">
-  <h3>Email: <span><h4><%= user.email %></h4></span></h3>
-  
-  
+<div class="section">
+  <div class="card">
+    <div class="card-header"><p class="card-header-title">
+      Profile
+    </p></div>
+    <div class="card-content">
+      <p>
+        Email: <strong><%= user.email %></strong>
+      </p>
+      <p>
+        Password: <strong><%= user.password %></strong>
+      </p>
+    </div>
+  </div>
 </div>

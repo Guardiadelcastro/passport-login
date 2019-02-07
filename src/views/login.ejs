@@ -1,11 +1,13 @@
 <%- layout('./layouts/main.ejs') %>
-
 <div class="section">
   <div class="columns is-vcentered">
     <div class="is-one-quarter column"></div>
       <div class="column is-half">
-        <div class="box">  
-        <form action="/login" method="POST">
+        <div class="message is-primary">
+          <div class="message-header">
+            <p>Log In</p>
+          </div>
+          <form action="/login" method="POST" class="message-body">
             <div class="field">
               <label class="label">Email</label>
               <div class="control has-icons-left">
@@ -25,7 +27,7 @@
             </div>
             <div class="field is-grouped">
               <div class="control">
-                <button class="button is-primary" type="submit">Log In</button>
+                <button class="button is-link" type="submit">Log In</button>
               </div>
               <div class="control">
                 <button class="button is-light" type="reset">Cancel</button>
