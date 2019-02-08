@@ -3,12 +3,14 @@ const expressLayouts = require('express-ejs-layouts');
 const path = require('path');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
-// const passport = require('passport');
-// const session = require('express-session');
-// const flash = require('connect-flash'); 
+const passport = require('passport');
+const session = require('express-session');
+const flash = require('connect-flash'); 
 
 const app = express();
 
+// Passport config
+require('./config/passport')(passport);
 // DB config
 const db = require('./config/keys').mongodb.URI
 
@@ -19,6 +21,30 @@ mongoose.connect(db, { useNewUrlParser: true })
 
 // Bodyparser
 app.use(express.urlencoded({ extended: false }));
+
+// Express Session
+app.use(
+  session({
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true
+  })
+); 
+
+// Passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Connect Flash
+app.use(flash());
+
+// Global variables
+app.use((req, res, next) => {
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  res.locals.error = req.flash('error');
+  next();
+})
 
 // Morgan
 app.use(morgan('dev'));
