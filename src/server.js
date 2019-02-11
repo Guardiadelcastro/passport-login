@@ -49,10 +49,10 @@ app.use((req, res, next) => {
 // Morgan
 app.use(morgan('dev'));
 
-// EJS
-app.use(expressLayouts);
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+// Pug
+// app.use(expressLayouts);
+// app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug')
 
 // routes
 app.use('/', require('./routes/router.js'));
