@@ -1,4 +1,8 @@
 # User Authentication using NodeJS, Passport and MongoDB
+
+![Node logo](./src/img/node-logo.png)   ![Passport logo](./src/img/passport-logo.png)   ![Pug logo](./src/img/pug-logo.png)
+
+
 I wanted to learn more about express and I have a project in mind that needs user authentication. Because of this I have been following a tutorial by [**Fazt**](http://www.faztweb.com) and his video on [Youtube](https://youtu.be/uVltgEcjNww), and a tutorial by [Brad Traversy](http://www.traversymedia.com) in [Youtube](https://youtu.be/6FOq4cUdH8k) 
 
 But I won't leave it at that so I intend to play around with the code and add my spin on things. I will be using branches to organize the development. For example I want to dockerize mongodb and try to refactor the code to Typescript. To keep things organized, here are the branches:
@@ -10,6 +14,7 @@ But I won't leave it at that so I intend to play around with the code and add my
 | tutorial | The code as learned from Fazt's tutorial|
 | bulma | I changed the style of the components with bulma instead of bootstrap |
 | tutorial2 | The code as learned from TraversyMedia |
+| pug | I changed EJS to PUG as the template engine|
 
 
 
