@@ -4,7 +4,7 @@
   <img src="./src/img/node-logo.png" alt="node logo">
   <img src="./src/img/passport-logo.png" alt="passport logo">
   <img src="./src/img/pug-logo.png" alt="pug logo">
-  <img src="./src/img/mongodb-logo.jpeg" alt="mongodb logo">
+  <img src="./src/img/mongodb-logo.png" alt="mongodb logo">
   <br>
 </p>
  
