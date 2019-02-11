@@ -1,7 +1,12 @@
 # User Authentication using NodeJS, Passport and MongoDB
-| Node| Passport |
-|:----:|:----:|
-|![Node logo](./src/img/node-logo.png)|![Passport logo](./src/img/passport-logo.png)|
+<p align="center">
+  <br>
+  <img src="./src/img/node-logo.png" alt="node logo">
+  <img src="./src/img/passport-logo.png" alt="passport logo">
+  <img src="./src/img/pug-logo.png" alt="pug logo">
+  <img src="./src/img/mongodb-logo.jpeg" alt="mongodb logo">
+  <br>
+</p>
  
 
 I wanted to learn more about express and I have a project in mind that needs user authentication. Because of this I have been following a tutorial by [**Fazt**](http://www.faztweb.com) and his video on [Youtube](https://youtu.be/uVltgEcjNww), and a tutorial by [Brad Traversy](http://www.traversymedia.com) in [Youtube](https://youtu.be/6FOq4cUdH8k) 
