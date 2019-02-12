@@ -24,7 +24,7 @@ But I won't leave it at that so I intend to play around with the code and add my
 | tutorial2 | The code as learned from TraversyMedia |
 | pug | I changed EJS to PUG as the template engine|
 | bulma2 | Added bulma to tutorial2 |
-| docker | Added bulma to tutorial2 |
+| docker | Added docker to project with instructions |
 
 
 ### Start app with docker
