@@ -1,20 +1,25 @@
-extends layout/main
+extends layout/index
 block content
-  .row.mt-5
-    .col-md-6.m-auto
-      .card.card-body
-        h1.text-center.mb-3 
-          i.fas.fa-sign-in-alt Login
-        include layout/messages
-        form(action="/users/login" method="POST")
-          .form-group
-            label(for="email") Email
-            input(type="email", name="email", placeholder="Enter email")#email.form-control
-          .form-group
-            label(for="password") Password
-            input(type="password", name="password", placeholder="Enter password")#password.form-control
-          div
-            button(type="submit").btn.btn-primary.btn-block Login
-        p.lead.mt-4 
-          | No Account? 
-          a(href="/users/register") Register
+  .section
+    .columns.is-vcentered
+      .column.is-one.quarter
+      .column.is-half
+        section.message.is-info
+          .message-header Login
+          .message-body
+            include layout/messages
+            form(action="/users/login" method="POST")
+              .field
+                label(for="email").label Email
+                .control.has-icons-left
+                  input(type="email", name="email", placeholder="Enter email")#email.input
+                  span.icon.is-small.is-left: i.fa.fa-envelope
+              .field
+                label(for="password").label Password
+                .control.has-icons-left
+                  input(type="password", name="password", placeholder="Enter password")#password.input
+                  span.icon.is-small.is-left: i.fa.fa-key
+              .field.is-grouped.is-grouped-centered
+                .control
+                  button(type="submit").button.is-primary Register
+      .column.is-one.quarter

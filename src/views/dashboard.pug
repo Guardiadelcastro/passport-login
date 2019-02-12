@@ -1,5 +1,10 @@
-extend layout/main
+extends layout/index
 block content
-  h1.mt-4 Dashboard
-  p.lead.mb-3 Welcome #{user.name}
-  a(href="/users/logout").btn.btn-secondary Logout
+  .section
+    .card
+      .card-header
+        h1.card-header-title Dashboard
+      .card-content
+        p.lead.mb-3 Welcome #{user.name}
+        br
+        a(href="/users/logout").button.is-danger.is-outlined Logout

@@ -1,17 +1,13 @@
 if(typeof errors != 'undefined')
   each error in errors
-    div(role="alert").alert.alert-warning.alert-dismissible.fade.show= error.msg
-      button(type="button", data-dismiss="alert", aria-label="Close").close
-        span(aria-hidden="true") &times;
+    div(role="alert").notification.is-warning= error.msg
+      button(type="button", data-dismiss="alert", aria-label="Close").delete
 if(success_msg != '')
-  div(role="alert").alert.alert-success.alert-dismissible.fade.show #{success_msg}
-    button(type="button", data-dismiss="alert", aria-label="Close").close
-      span(aria-hidden="true") &times;
+  div(role="alert").notification.is-success #{success_msg}
+    button(type="button", data-dismiss="alert", aria-label="Close").delete
 if(error_msg != '')
-  div(role="alert").alert.alert-danger.alert-dismissible.fade.show #{error_msg}
-    button(type="button", data-dismiss="alert", aria-label="Close").close
-      span(aria-hidden="true") &times;
+  div(role="alert").notification.is-warning #{error_msg}
+    button(type="button", data-dismiss="alert", aria-label="Close").delete
 if(error != '')
-  div(role="alert").alert.alert-danger.alert-dismissible.fade.show #{error}
-    button(type="button", data-dismiss="alert", aria-label="Close").close
-      span(aria-hidden="true") &times;
+  div(role="alert").notification.is-warning #{error}
+    button(type="button", data-dismiss="alert", aria-label="Close").delete

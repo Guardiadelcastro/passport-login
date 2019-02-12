@@ -1,25 +1,35 @@
-extends layout/main
+extends layout/index
 block content
-  .row.mt-5
-    .col-md-6.m-auto
-      .card.card-body
-        h1.text-center.mb-3
-          i.fas.fa-user-plus Register
-        include layout/messages.pug
-        form(action="/users/register", method="POST")
-          .form-group
-            label(for="name") Name
-            input(type="name", name="name", placeholder="Enter name", value=typeof name != 'undefined' ? name : '')#name.form-control
-          .form-group
-            label(for="email") Email
-            input(type="email", name="email", placeholder="Enter email", value=typeof email != 'undefined' ? email : '')#email.form-control
-          .form-group
-            label(for="password") Password
-            input(type="password", name="password", placeholder="Enter password", value=typeof password != 'undefined' ? password : '')#password.form-control 
-          .form-group
-            label(for="password2") Confirm Password
-            input(type="password", name="password2", placeholder="Repeat password", value=typeof password2 != 'undefined' ? password2 : '')#password2.form-control
-          button(type="submit").btn.btn-primary.btn-block Register
-        p.lead.mt-4
-          | Have An Account?
-          a(href="/users/login") Login
+  .section
+    .columns.is-vcentered
+      .column.is-one-quarter
+      .column.is-half
+        section.message.is-info
+          .message-header Register
+          .message-body
+            include layout/messages.pug
+            form(action="/users/register", method="POST")
+              .field
+                label(for="name").label Name
+                .control.has-icons-left
+                  input(type="name", name="name", placeholder="Enter name", value=typeof name != 'undefined' ? name : '')#name.input
+                  span.icon.is-small.is-left: i.far.fa-user
+              .field
+                label(for="email") Email
+                .control.has-icons-left
+                  input(type="email", name="email", placeholder="Enter email", value=typeof email != 'undefined' ? email : '')#email.input
+                  span.icon.is-small.is-left: i.fa.fa-envelope
+              .field
+                label(for="password") Password
+                .control.has-icons-left
+                  input(type="password", name="password", placeholder="Enter password", value=typeof password != 'undefined' ? password : '')#password.input
+                  span.icon.is-small.is-left: i.fa.fa-key
+              .field
+                label(for="password2") Confirm Password
+                .control.has-icons-left
+                  input(type="password", name="password2", placeholder="Repeat password", value=typeof password2 != 'undefined' ? password2 : '')#password2.input
+                  span.icon.is-small.is-left: i.fa.fa-key
+              .field.is-grouped.is-grouped-centered
+                .control
+                  button(type="submit").button.is-primary Register
+      .column.is-one-quarter

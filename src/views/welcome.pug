@@ -1,10 +1,14 @@
-extends layout/main.pug
+extends layout/index
 block content
-  .row.mt-5
-    .col-md-6.m-auto
-      .card.card-body.text-center
-        h1
+  section.hero.is-primary.is-medium
+    .hero-body
+      .container.has-text-centered
+        h1.title
           i.fab.fa-node-js.fa-3x
-        p Create an account or login
-        a(href="/users/register").btn.btn-primary.btn-block.mb-2 Register
-        a(href="/users/login").btn.btn-secondary.btn-block Log In
+        h2.subtitle
+          span Create an account or login
+        div.field.is-grouped.is-grouped-centered
+          p.control
+            a(href="/users/register").button.is-primary.is-inverted Register
+          p.control
+            a(href="/users/login").button.is-link Log In
