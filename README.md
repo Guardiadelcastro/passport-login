@@ -21,6 +21,7 @@ But I won't leave it at that so I intend to play around with the code and add my
 | bulma | I changed the style of the components with bulma instead of bootstrap |
 | tutorial2 | The code as learned from TraversyMedia |
 | pug | I changed EJS to PUG as the template engine|
+| bulma2 | Added bulma to tutorial2 |
 
 
 
