@@ -34,6 +34,12 @@ If you want to clone the project I will leave here some instructions (that will 
 npm run dev
 ```
 #### Start mongodb
++ With mongo installed on your machine
 ```bash 
 mongod --dbpath ../data/db
 ```
++ With Docker
+```bash 
+docker run -d -p 27017:27017 -v ~/Desktop/Dev/data/db:/data/db mongo
+```
+"~/Desktop/Dev/data/db" should change to where you want the content of the db to go
