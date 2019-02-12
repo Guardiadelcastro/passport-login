@@ -7,7 +7,6 @@ block content
         section.message.is-info
           .message-header Register
           .message-body
-            include layout/messages.pug
             form(action="/users/register", method="POST")
               .field
                 label(for="name").label Name
@@ -33,3 +32,4 @@ block content
                 .control
                   button(type="submit").button.is-primary Register
       .column.is-one-quarter
+        include layout/messages.pug

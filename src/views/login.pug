@@ -7,7 +7,6 @@ block content
         section.message.is-info
           .message-header Login
           .message-body
-            include layout/messages
             form(action="/users/login" method="POST")
               .field
                 label(for="email").label Email
@@ -23,3 +22,4 @@ block content
                 .control
                   button(type="submit").button.is-primary Register
       .column.is-one.quarter
+        include layout/messages
