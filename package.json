@@ -13,7 +13,6 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "connect-flash": "^0.1.1",
-    "ejs": "^2.6.1",
     "express": "^4.16.4",
     "express-session": "^1.15.6",
     "mongoose": "^5.4.10",
@@ -23,6 +22,8 @@
     "pug": "^2.0.3"
   },
   "devDependencies": {
-    "nodemon": "^1.18.9"
+    "nodemon": "^1.18.9",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.3.3"
   }
 }
