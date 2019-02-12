@@ -32,7 +32,7 @@ This assumes you have docker installed
 ```bash
 docker-compose up
 ```
-go to "localhost" to view app
+go to "localhost:5000" to view app
 
 
 ### Start Development
