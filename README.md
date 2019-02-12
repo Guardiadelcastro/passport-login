@@ -5,6 +5,8 @@
   <img src="./src/img/passport-logo.png" alt="passport logo">
   <img src="./src/img/pug-logo.png" alt="pug logo">
   <img src="./src/img/mongodb-logo.png" alt="mongodb logo">
+  <img src="./src/img/bulma-logo.png" alt="bulma logo">
+  <img src="./src/img/docker-logo.png" alt="docker logo">
   <br>
 </p>
  
@@ -22,11 +24,18 @@ But I won't leave it at that so I intend to play around with the code and add my
 | tutorial2 | The code as learned from TraversyMedia |
 | pug | I changed EJS to PUG as the template engine|
 | bulma2 | Added bulma to tutorial2 |
+| docker | Added bulma to tutorial2 |
 
 
+### Start app with docker
+This assumes you have docker installed
+```bash
+docker-compose up
+```
+go to "localhost" to view app
 
 
-### Start Project
+### Start Development
 If you want to clone the project I will leave here some instructions (that will also serve me to rememeber myself)
 
 #### Start nodemon server
@@ -38,7 +47,7 @@ npm run dev
 ```bash 
 mongod --dbpath ../data/db
 ```
-+ With Docker
++ With docker image of mongo 
 ```bash 
 docker run -d -p 27017:27017 -v ~/Desktop/Dev/data/db:/data/db mongo
 ```
