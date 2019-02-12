@@ -15,7 +15,7 @@ require('./config/passport')(passport);
 const db = require('./config/keys').mongodb.URI
 
 // Connect to mongo
-const options = {
+const dbOptions = {
   autoIndex: false, // Don't build indexes
   reconnectTries: 10, // Retry up to 10 times
   reconnectInterval: 1000, // Reconnect every 1s
@@ -23,7 +23,7 @@ const options = {
   useNewUrlParser: true
 }
 
-mongoose.connect(db, options)
+mongoose.connect(db, dbOptions)
   .then(() => console.log(`MongoDB is connected...`))
   .catch(err => console.error(`MongoDB connection unsccessfull due to error: ${err}`));
 
