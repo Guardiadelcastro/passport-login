@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node src/server.js",
-    "dev": "nodemon src/server.js"
+    "start": "node src/server.ts",
+    "dev": "nodemon -e ts src/server.ts",
+    "lint": "tslint -p ./tsconfig.json"
   },
   "keywords": [],
   "author": "",
@@ -22,7 +23,9 @@
     "pug": "^2.0.3"
   },
   "devDependencies": {
+    "@types/node": "^11.9.0",
     "nodemon": "^1.18.9",
+    "tslint": "^5.12.1",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.3.3"
   }

@@ -1,10 +1,10 @@
-const express = require('express');
-const path = require('path');
-const morgan = require('morgan');
-const mongoose = require('mongoose');
-const passport = require('passport');
-const session = require('express-session');
-const flash = require('connect-flash'); 
+import * as express from 'express';
+import * as path from 'path';
+import * as morgan from 'morgan';
+import * as mongoose from 'mongoose';
+import * as passport from 'passport';
+import * as session from 'express-session';
+import * as flash from 'connect-flash';
 
 const app = express();
 
@@ -36,7 +36,7 @@ app.use(
     resave: true,
     saveUninitialized: true
   })
-); 
+);
 
 // Passport
 app.use(passport.initialize());

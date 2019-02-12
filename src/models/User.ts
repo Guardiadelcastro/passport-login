@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import * as mongoose from 'mongoose';
 
 const UserSchema = new mongoose.Schema({
   name: {
@@ -20,17 +20,5 @@ const UserSchema = new mongoose.Schema({
 });
 
 const User = mongoose.model('User', UserSchema);
-
-// userSchema.methods.encryptPassword = (password) => {
-//   return bcrypt.hashSync(password, bcrypt.genSaltSync(10));
-// };
-
-// userSchema.methods.comparePassword = (password) => {
-//   return bcrypt.compareSync(password, this.password);
-// };
-
-// userSchema.methods.comparePassword = function (password) {
-//   return bcrypt.compareSync(password, this.password);
-// };
 
 module.exports = User;
