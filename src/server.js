@@ -19,25 +19,14 @@ const options = {
   autoIndex: false, // Don't build indexes
   reconnectTries: 10, // Retry up to 10 times
   reconnectInterval: 1000, // Reconnect every 1s
-  poolSize: 10, // Maintain up to 10 socket connections
-  // If not connected, return errors immediately rather than waiting for reconnect
   bufferMaxEntries: 0,
   useNewUrlParser: true
 }
 
-const connectWithRetry = () => {
-  console.log('MongoDB connection with retry')
-  mongoose.connect(db, options)
-    .then(() => {
-    console.log('MongoDB is connected...')
-    })
-    .catch( err => {
-    console.error(`MongoDB connection unsuccessful due to error: ${err}, retrying in 5 seconds`)
-    setTimeout(connectWithRetry, 5000)
-  })
-}
+mongoose.connect(db, options)
+  .then(() => console.log(`MongoDB is connected...`))
+  .catch(err => console.error(`MongoDB connection unsccessfull due to error: ${err}`));
 
-connectWithRetry()  
 // Bodyparser
 app.use(express.urlencoded({ extended: false }));
 
