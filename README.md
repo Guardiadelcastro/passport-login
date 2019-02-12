@@ -1,12 +1,12 @@
 # User Authentication using NodeJS, Passport and MongoDB
 <p align="center">
   <br>
-  <img src="./src/img/node-logo.png" alt="node logo">
-  <img src="./src/img/passport-logo.png" alt="passport logo">
+  <img src="./src/img/Node-logo.png" alt="node logo">
+  <img src="./src/img/Passport-logo.png" alt="passport logo">
   <img src="./src/img/pug-logo.png" alt="pug logo">
+  <img src="./src/img/docker-logo.png" alt="docker logo">
   <img src="./src/img/mongodb-logo.png" alt="mongodb logo">
   <img src="./src/img/bulma-logo.png" alt="bulma logo">
-  <img src="./src/img/docker-logo.png" alt="docker logo">
   <br>
 </p>
  
