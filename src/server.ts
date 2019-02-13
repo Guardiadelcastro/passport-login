@@ -1,3 +1,4 @@
+// Modules
 import * as express from 'express';
 import * as path from 'path';
 import * as morgan from 'morgan';
@@ -6,6 +7,11 @@ import * as passport from 'passport';
 import * as session from 'express-session';
 import * as flash from 'connect-flash';
 
+// Files
+import * as router from './routes/router'
+import * as users from './routes/users';
+
+// Initialize express
 const app = express();
 
 // Passport config
@@ -57,13 +63,12 @@ app.use((req, res, next) => {
 app.use(morgan('dev'));
 
 // Pug
-// app.use(expressLayouts);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug')
 
 // routes
-app.use('/', require('./routes/router.js'));
-app.use('/users', require('./routes/users.js'));
+app.use('/router', router);
+app.use('/users', users);
 
 // server init
 const PORT = process.env.PORT || 5000;
