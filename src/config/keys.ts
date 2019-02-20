@@ -1,6 +1,6 @@
 const keys = {
   mongodb: {
-    URI: 'mongodb://mongo:27017/passport-login'
+    URI: 'mongodb://localhost:27017/passport-login'
   }
 }
 
