@@ -1,6 +1,7 @@
 import * as express from 'express';
 import * as passport from 'passport';
-import * as bcrypt from 'bcryptjs';
+import { checkRegisterErrors } from '../controllers/users.controller'
+
 
 const router = express.Router();
 
@@ -20,74 +21,39 @@ router.post('/login', (req, res, next) => {
 // Register
 router.get('/register', (req, res) => res.render('register'));
 
-router.post('/register', (req, res) => {
-  const { name, email, password, password2 } = req.body;
-  let errors = [];
-
-  if (!name || !email || !password || !password2) {
-    errors.push({ msg: 'Please enter all fields' });
+router.post('/register', async (req, res) => {
+  const userParams = {
+    name: req.body.name,
+    email: req.body.email,
+    password: req.body.password,
+    password2: req.body.password2
   }
 
-  if (password != password2) {
-    errors.push({ msg: 'Passwords do not match' });
-  }
+  const errors = await checkRegisterErrors(userParams);
 
-  if (password.length < 6) {
-    errors.push({ msg: 'Password must be at least 6 characters' });
-  }
-
-  if (errors.length > 0) {
+  if(errors.length > 0) {
     res.render('register', {
-      errors,
-      name,
-      email,
-      password,
-      password2
-    });
-  } else {
-    User.findOne({ email }).then(user => {
-      if (user) {
-        errors.push({ msg: 'Email already exists' });
-        res.render('register', {
-          errors,
-          name,
-          email,
-          password,
-          password2
-        });
-      } else {
-        const newUser = new User({
-          name,
-          email,
-          password
-        });
-
-        bcrypt.genSalt(10, (err, salt) => {
-          bcrypt.hash(newUser.password, salt, (err, hash) => {
-            if (err) throw err;
-            newUser.password = hash;
-            newUser
-              .save()
-              .then(user => {
-                req.flash(
-                  'success_msg',
-                  'You are now registered and can log in'
-                );
-                res.redirect('/users/login');
-              })
-              .catch(err => console.log(err));
-          });
-        });
-      }
+      userParams,
+      errors
     });
   }
+
+  const newUser = new User({
+    name: userParams.name,
+    email: userParams.email,
+    password: userParams.password
+  })
+
+  newUser.save();
+  res.redirect('/users/login');
+
 });
 
 // Logout
-router.get('/logout', (req: any, res) => {
+router.get('/logout', (req, res) => {
   req.logout();
   req.flash('success_msg', 'You are logged out');
   res.redirect('/users/login');
 });
 
-module.exports = router;
+export default router;
