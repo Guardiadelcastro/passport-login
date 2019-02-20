@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node src/server.ts",
-    "dev": "nodemon -e ts src/server.ts",
+    "dev": "NODE_ENV=development ts-node src/server.ts",
     "lint": "tslint -p ./tsconfig.json"
   },
   "keywords": [],

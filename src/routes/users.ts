@@ -50,7 +50,7 @@ userRouter.post('/register', async (req, res) => {
 });
 
 // Logout
-userRouter.get('/logout', (req, res) => {
+userRouter.get('/logout', (req:any, res) => {
   req.logout();
   req.flash('success_msg', 'You are logged out');
   res.redirect('/users/login');
