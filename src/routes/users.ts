@@ -3,15 +3,15 @@ import * as passport from 'passport';
 import { checkRegisterErrors } from '../controllers/users.controller'
 
 
-const router = express.Router();
+const userRouter = express.Router();
 
 // Model
 import User from '../models/User';
 
 // Login
-router.get('/login', (req, res) =>  res.render('login'));
+userRouter.get('/login', (req, res) =>  res.render('login'));
 
-router.post('/login', (req, res, next) => {
+userRouter.post('/login', (req, res, next) => {
   passport.authenticate('local', {
     successRedirect: '/dashboard',
     failureRedirect: '/users/login',
@@ -19,9 +19,9 @@ router.post('/login', (req, res, next) => {
   })(req, res, next)
 });
 // Register
-router.get('/register', (req, res) => res.render('register'));
+userRouter.get('/register', (req, res) => res.render('register'));
 
-router.post('/register', async (req, res) => {
+userRouter.post('/register', async (req, res) => {
   const userParams = {
     name: req.body.name,
     email: req.body.email,
@@ -50,10 +50,10 @@ router.post('/register', async (req, res) => {
 });
 
 // Logout
-router.get('/logout', (req, res) => {
+userRouter.get('/logout', (req, res) => {
   req.logout();
   req.flash('success_msg', 'You are logged out');
   res.redirect('/users/login');
 });
 
-export default router;
+export = userRouter;

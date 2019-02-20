@@ -8,6 +8,8 @@ import * as session from 'express-session';
 import * as flash from 'connect-flash';
 
 import keys from './config/keys'
+import * as router from './routes/router'
+import * as users from './routes/users'
 
 class Server {
 
@@ -75,8 +77,7 @@ server.start();
 
 
 // Files
-// import * as router from './routes/router'
-// import * as users from './routes/users';
+//
 // import * as keys from './config/keys';
 
 

@@ -58,5 +58,5 @@ const comparePassword: comparePasswordFunction = function (candidatePassword, cb
 };
 
 userSchema.methods.comparePassword = comparePassword;
-export default model('User', userSchema);
 
+export default model('User', userSchema);

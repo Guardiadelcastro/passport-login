@@ -9,4 +9,5 @@ router.get('/dashboard', isAuth, (req, res) =>
     user: req.user
   })
 );
-module.exports = router;
+
+export = router;
