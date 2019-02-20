@@ -74,22 +74,3 @@ class Server {
 
 const server = new Server();
 server.start();
-
-
-// Files
-//
-// import * as keys from './config/keys';
-
-
-
-
-
-
-
-
-
-
-// routes
-
-
-app.listen(PORT, console.log(`Listening on port ${PORT}`));
