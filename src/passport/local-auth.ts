@@ -1,50 +1,30 @@
-const passport = require('passport');
-const localStrategy = require('passport-local').Strategy;
+import * as passport from 'passport';
+import { Strategy } from 'passport-local';
 
-const User = require('../models/User');
+import User from '../models/User';
 
-passport.serializeUser((user, done) =>  {
-  done(null, user.id)
+
+passport.serializeUser<any, any>((user, done) => {
+  done(undefined, user.id);
 });
 
-passport.deserializeUser(async (id, done) =>  {
-  const user = await User.findById(id);
-  done(null, user);
+passport.deserializeUser((id, done) => {
+  User.findById(id, (err, user) => {
+    done(err, user);
+  });
 });
-
-passport.use('local-signup', new localStrategy({
-  usernameField: 'email',
-  passwordField: 'password',
-  passReqToCallback: true
-}, async (req, email, password, done) => {
-
-  const user = await User.findOne({'email': email});
-
-  if(user) {
-    return done(null, false, req.flash('signUpMessage', 'Email already exists'));
-  } else {
-    const newUser = new User();
-    
-    newUser.email = email;
-    newUser.password = newUser.encryptPassword(password);
-    await newUser.save();
-    done(null, newUser);
-  }
-}));
-
-passport.use('local-login', new localStrategy({
-  usernameField: 'email',
-  passwordField: 'password',
-  passReqToCallback: true
-}, async (req, email, password, done) => {
-  const user = await User.findOne({'email': email});
-
-  if (!user) {
-    return done(null, false, req.flash('logInMessage', 'User not found'))
-  } else if (!user.comparePassword(password)) {
-    return done(null, false, req.flash('logInMessage', 'Incorrect password'))
-  }
-
-  return done(null, user)
-
+passport.use(new Strategy({ usernameField: "email" }, (email, password, done) => {
+  User.findOne({ email: email.toLowerCase() }, (err, user: any) => {
+    if (err) { return done(err); }
+    if (!user) {
+      return done(undefined, false, { message: `Email ${email} not found.` });
+    }
+    user.comparePassword(password, (error: Error, isMatch: boolean) => {
+      if (error) { return done(error); }
+      if (isMatch) {
+        return done(undefined, user);
+      }
+      return done(undefined, false, { message: "Invalid email or password." });
+    });
+  });
 }));
