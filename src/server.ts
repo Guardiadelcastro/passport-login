@@ -7,9 +7,10 @@ import * as passport from 'passport';
 import * as session from 'express-session';
 import * as flash from 'connect-flash';
 
-import keys from './config/keys'
-import * as router from './routes/router'
-import * as users from './routes/users'
+import keys from './config/keys';
+import * as router from './routes/router';
+import * as users from './routes/users';
+import './config/passport';
 
 class Server {
 

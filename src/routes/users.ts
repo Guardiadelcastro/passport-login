@@ -3,15 +3,16 @@ import * as passport from 'passport';
 import { checkRegisterErrors } from '../controllers/users.controller'
 
 
-const userRouter = express.Router();
+const router = express.Router();
 
 // Model
-import User from '../models/User';
+import User, { UserModel } from '../models/User';
+import '../config/passport';
 
 // Login
-userRouter.get('/login', (req, res) =>  res.render('login'));
+router.get('/login', (req, res) =>  res.render('login'));
 
-userRouter.post('/login', (req, res, next) => {
+router.post('/login', (req, res, next) => {
   passport.authenticate('local', {
     successRedirect: '/dashboard',
     failureRedirect: '/users/login',
@@ -19,29 +20,26 @@ userRouter.post('/login', (req, res, next) => {
   })(req, res, next)
 });
 // Register
-userRouter.get('/register', (req, res) => res.render('register'));
+router.get('/register', (req, res) => res.render('register'));
 
-userRouter.post('/register', async (req, res) => {
-  const userParams = {
-    name: req.body.name,
-    email: req.body.email,
-    password: req.body.password,
-    password2: req.body.password2
-  }
-
-  const errors = await checkRegisterErrors(userParams);
+router.post('/register', async (req, res) => {
+  const { name, email, password, password2 } = req.body
+  const errors = await checkRegisterErrors( name, email, password, password2 );
 
   if(errors.length > 0) {
     res.render('register', {
-      userParams,
+      name,
+      email,
+      password,
+      password2,
       errors
     });
   }
 
   const newUser = new User({
-    name: userParams.name,
-    email: userParams.email,
-    password: userParams.password
+    name,
+    email,
+    password
   })
 
   newUser.save();
@@ -50,10 +48,10 @@ userRouter.post('/register', async (req, res) => {
 });
 
 // Logout
-userRouter.get('/logout', (req:any, res) => {
+router.get('/logout', (req:any, res) => {
   req.logout();
   req.flash('success_msg', 'You are logged out');
   res.redirect('/users/login');
 });
 
-export = userRouter;
+export = router;

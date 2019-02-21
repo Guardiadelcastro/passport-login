@@ -1,38 +1,42 @@
-import { Strategy } from 'passport-local';
-import * as bcrypt from 'bcryptjs';
+import * as passportLocal from 'passport-local';
+import * as passport from 'passport';
+import * as bcrypt from 'bcryptjs'
 
 // Load User model
-import User from '../models/User'
+import User, { UserModel } from '../models/User';
 
-passport.serializeUser((user, done) => {
+const LocalStrategy = passportLocal.Strategy
+
+passport.serializeUser<any, any>((user, done) => {
   done(undefined, user.id);
 });
 
-passport.deserializeUser((id, done) => {
-  User.findById(id, (err, user) => {
-    done(err, user);
-  });
+
+passport.deserializeUser(async (id, done) => {
+  const user = await User.findById(id)
+  done(null, user);
 });
 
-passport.use(new Strategy({ usernameField: "email" }, (email, password, done) => {
-  User.findOne({ email: email.toLowerCase() }, (err, user: any) => {
-    if (err) {
-      return done(err);
-    }
-    if (!user) {
-      return done(undefined, false, {
-        message: `Email ${email} not found.`
-      });
-    }
-    user.comparePassword(password, (error: Error, isMatch: boolean) => {
-      if (error) {
-        return done(error);
+passport.use(new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
+    // Match user
+    User.findOne({ email })
+      .then((user: UserModel) => {
+      if (!user) {
+        return done(null, false, { message: 'That email is not registered' });
       }
-      if (isMatch) {
-        return done(undefined, user);
-      }
-      return done(undefined, false, { message: "Invalid email or password." });
-    });
-  });
-}));
 
+      // Match password
+      bcrypt.compare(password, user.password, (err, isMatch) => {
+        console.log(password);
+        console.log(user.password);
+        if (err) {throw err};
+        if (isMatch) {
+          return done(null, user);
+        } else {
+          return done(null, false, { message: 'Password incorrect' });
+        }
+      });
+    })
+    .catch(err => console.error(err));
+  })
+);

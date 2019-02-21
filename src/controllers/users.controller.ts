@@ -1,8 +1,6 @@
 import User from '../models/User';
 
-export async function checkRegisterErrors(params) {
-
-  const { name, email, password, password2 } = params;
+export async function checkRegisterErrors(name: string, email: string, password: string, password2: string) {
 
   const errors = []
 
