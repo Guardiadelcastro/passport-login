@@ -60,7 +60,7 @@ class Server {
   }
 
   routes() {
-    this.app.use('/router', router);
+    this.app.use('/', router);
     this.app.use('/users', users);
 
   }
