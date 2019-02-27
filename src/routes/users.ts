@@ -41,6 +41,7 @@ router.post('/register', async (req, res) => {
     email,
     password
   })
+  console.log(newUser);
 
   newUser.save();
   res.redirect('/users/login');
