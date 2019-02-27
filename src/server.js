@@ -1,18 +1,18 @@
 const express = require('express');
-const expressLayouts = require('express-ejs-layouts');
 const path = require('path');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const session = require('express-session');
 const flash = require('connect-flash'); 
-
 const app = express();
 
 // Passport config
 require('./config/passport')(passport);
+const keys = require('./config/keys')
+
 // DB config
-const db = require('./config/keys').mongodb.URI
+const db = keys.mongodb.URI
 
 // Connect to mongo
 const options = {
