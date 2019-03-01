@@ -29,7 +29,7 @@
     "@types/node": "^11.9.0",
     "@types/passport": "^1.0.0",
     "@types/passport-local": "^1.0.33",
-    "nodemon": "^1.18.9",
+    "nodemon": "^1.18.10",
     "tslint": "^5.12.1",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.3.3"

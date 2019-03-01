@@ -1,17 +1,16 @@
 import * as express from 'express';
 import * as passport from 'passport';
-import * as bcrypt from 'bcryptjs';
 
 const router = express.Router();
 
 // Model
-import User, { UserModel } from '../models/User';
+import User from '../models/User';
 import '../config/passport';
 
 // Login
 router.get('/login', (req, res) =>  res.render('login'));
 
-router.post('/login', (req, res, next) => {
+router.post('/login', (req: any, res, next) => {
   passport.authenticate('local', {
     successRedirect: '/dashboard',
     failureRedirect: '/users/login',
@@ -21,7 +20,7 @@ router.post('/login', (req, res, next) => {
 // Register
 router.get('/register', (req, res) => res.render('register'));
 
-router.post('/register', async (req, res) => {
+router.post('/register', async (req: any, res) => {
   try {
     const { name, email, password, password2 } = req.body;
     const errors = [];

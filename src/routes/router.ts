@@ -1,6 +1,6 @@
 import * as  express from 'express';
-import isAuth  from '../controllers/index.controller'
 const router = express.Router();
+import { isAuth } from '../config/auth'
 
 router.get('/', (req, res) => res.render('welcome'));
 
