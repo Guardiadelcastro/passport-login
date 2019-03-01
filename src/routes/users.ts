@@ -1,7 +1,6 @@
 import * as express from 'express';
 import * as passport from 'passport';
-import { checkRegisterErrors } from '../controllers/users.controller'
-
+import * as bcrypt from 'bcryptjs';
 
 const router = express.Router();
 
@@ -23,30 +22,44 @@ router.post('/login', (req, res, next) => {
 router.get('/register', (req, res) => res.render('register'));
 
 router.post('/register', async (req, res) => {
-  const { name, email, password, password2 } = req.body
-  const errors = await checkRegisterErrors( name, email, password, password2 );
+  const { name, email, password, password2 } = req.body;
+  const errors = [];
 
-  if(errors.length > 0) {
-    res.render('register', {
-      name,
-      email,
-      password,
-      password2,
-      errors
-    });
+  if (!name || !email || !password || !password2) {
+    errors.push({ msg: 'Please enter all fields' });
   }
 
-  const newUser = new User({
-    name,
-    email,
-    password
-  })
-  console.log(newUser);
+  if (password !== password2) {
+    errors.push({ msg: 'Passwords do not match' });
+  }
 
-  newUser.save();
-  res.redirect('/users/login');
+  if (password.length < 6) {
+    errors.push({ msg: 'Password must be at least 6 characters' });
+  }
 
-});
+  if (errors.length > 0) {
+    res.render('register', { errors, name, email, password, password2 });
+    return;
+  } else {
+    User.findOne({ email }).then(user => {
+      if (user) {
+        errors.push({ msg: 'Email already exists' });
+        res.render('register', { errors, name, email, password, password2});
+      } else {
+        const newUser = new User({ name, email, password });
+        newUser.save()
+          .then(user => {
+            req.flash(
+              'success_msg',
+              'You are now registered and can log in'
+            );
+            res.redirect('/users/login');
+          })
+          .catch(error => console.log(error));
+      };
+    });
+  }
+})
 
 // Logout
 router.get('/logout', (req:any, res) => {
