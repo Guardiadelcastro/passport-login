@@ -1,13 +1,13 @@
 import { Document, Schema, model } from 'mongoose';
 import * as bcrypt from 'bcryptjs';
 
-export interface UserModel extends Document {
+export interface IUserModel extends Document {
   name: string,
   email: string,
   password: string,
 }
 
-const userSchema = new Schema({
+const UserSchema = new Schema({
   name: {
     type: String,
     required: true
@@ -27,23 +27,19 @@ const userSchema = new Schema({
   }
 });
 
-userSchema.pre('save', function hashPassword(next) {
-  const user = this as UserModel;
+UserSchema.pre('save', async function hashPassword(next) {
+  try {
+    const user = this as IUserModel
 
-  // only hash the password if it has been modified (or is new)
-  if (!user.isModified('password')) {
-     return next()
-  };
+    const salt = await bcrypt.genSalt(10);
 
-  // generate a salt
-  return bcrypt.genSalt(10).then((salt) => {
-    // hash the password along with our new salt
-    return bcrypt.hash(user.password, salt).then((hash) => {
-      // override the cleartext password with the hashed one
-      user.password = hash;
-      return next();
-    }).catch(next);
-  }).catch(next);
+    const hash = await bcrypt.hash(user.password, salt);
+
+    user.password = hash;
+    return next();
+  } catch (err) {
+    return next(err);
+  }
 });
 
-export default model('User', userSchema);
+export default model('User', UserSchema);
