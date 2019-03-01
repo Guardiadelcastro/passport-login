@@ -7,7 +7,6 @@ import * as passport from 'passport';
 import * as session from 'express-session';
 import * as flash from 'connect-flash';
 
-import keys from './config/keys';
 import * as router from './routes/router';
 import * as users from './routes/users';
 import './config/passport';
@@ -24,7 +23,7 @@ class Server {
 
   config() {
     // Mongoose connect
-    const MONGO_URI = keys.mongodb.URI;
+    const MONGO_URI = 'mongodb://localhost:27017/passport-login'
     const mongooseOptions = {
       autoIndex: false, // Don't build indexes
       reconnectTries: 10, // Retry up to 10 times
