@@ -45,10 +45,10 @@ npm run dev
 #### Start mongodb
 + With mongo installed on your machine
 ```bash 
-mongod --dbpath ../data/db
+mongod --dbpath $(pwd)/../data/db
 ```
 + With docker image of mongo 
 ```bash 
-docker run -d -p 27017:27017 -v ~/Desktop/Dev/data/db:/data/db mongo
+docker run -d -p 27017:27017 -v $(pwd)/../data/db:/data/db mongo
 ```
-"~/Desktop/Dev/data/db" should change to where you want the content of the db to go
+"$(pwd)/../data/db" can be changed to the directory where you want the content of the mongo database to be.
