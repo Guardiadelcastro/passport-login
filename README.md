@@ -34,5 +34,5 @@ npm run dev
 ```
 #### Start mongodb
 ```bash 
-mongod --dbpath ../data/db
+mongod --dbpath $(pwd)/../data/db
 ```
